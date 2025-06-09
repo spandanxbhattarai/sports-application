@@ -1,0 +1,545 @@
+{
+  "info": {
+    "name": "Sports Application API",
+    "description": "API collection for testing the Sports Application backend",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Users",
+      "item": [
+        {
+          "name": "Register User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/users/register",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "users", "register"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Test User\",\n    \"email\": \"test@example.com\",\n    \"password\": \"password123\",\n    \"role\": \"user\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Login User",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/users/login",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "users", "login"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"email\": \"test@example.com\",\n    \"password\": \"password123\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get User Profile",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/users/profile",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "users", "profile"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Organizations",
+      "item": [
+        {
+          "name": "Create Organization",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/organizations",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "organizations"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Test Organization\",\n    \"domain\": \"test.com\",\n    \"description\": \"Test organization description\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get Organization",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/organizations/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "organizations", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "organization_id_here"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Sports",
+      "item": [
+        {
+          "name": "Create Sport",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/sports",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "sports"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Football\",\n    \"description\": \"Football sport description\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get All Sports",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/sports",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "sports"]
+            }
+          }
+        },
+        {
+          "name": "Get Active Sports",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/sports/active",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "sports", "active"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Bookings",
+      "item": [
+        {
+          "name": "Create Booking",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/bookings",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "bookings"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"organization_id\": \"org_id_here\",\n    \"sport_id\": \"sport_id_here\",\n    \"booking_date\": \"2024-03-20T10:00:00Z\",\n    \"slot_id\": \"slot_id_here\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get All Bookings",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/bookings?page=1&limit=10",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "bookings"],
+              "query": [
+                {
+                  "key": "page",
+                  "value": "1"
+                },
+                {
+                  "key": "limit",
+                  "value": "10"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Active Bookings",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/bookings/active",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "bookings", "active"]
+            }
+          }
+        },
+        {
+          "name": "Get User Bookings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/bookings/user/my-bookings",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "bookings", "user", "my-bookings"]
+            }
+          }
+        },
+        {
+          "name": "Get Upcoming Bookings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/bookings/user/upcoming",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "bookings", "user", "upcoming"]
+            }
+          }
+        },
+        {
+          "name": "Get Past Bookings",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/bookings/user/past",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "bookings", "user", "past"]
+            }
+          }
+        },
+        {
+          "name": "Update Booking",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/bookings/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "bookings", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "booking_id_here"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"booking_date\": \"2024-03-21T10:00:00Z\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Update Booking Status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/bookings/:id/status",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "bookings", ":id", "status"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "booking_id_here"
+                }
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"is_active\": false\n}"
+            }
+          }
+        },
+        {
+          "name": "Delete Booking",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/bookings/:id",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "bookings", ":id"],
+              "variable": [
+                {
+                  "key": "id",
+                  "value": "booking_id_here"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter Bookings by Date Range",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/bookings/filter/date-range?startDate=2024-03-01&endDate=2024-03-31",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "bookings", "filter", "date-range"],
+              "query": [
+                {
+                  "key": "startDate",
+                  "value": "2024-03-01"
+                },
+                {
+                  "key": "endDate",
+                  "value": "2024-03-31"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Filter Bookings by Sport",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/bookings/filter/sport?sportId=sport_id_here",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "bookings", "filter", "sport"],
+              "query": [
+                {
+                  "key": "sportId",
+                  "value": "sport_id_here"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Tournaments",
+      "item": [
+        {
+          "name": "Create Tournament",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/tournaments",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "tournaments"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"name\": \"Summer Tournament\",\n    \"description\": \"Annual summer tournament\",\n    \"start_date\": \"2024-06-01T00:00:00Z\",\n    \"end_date\": \"2024-06-30T23:59:59Z\",\n    \"sport_id\": \"sport_id_here\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get All Tournaments",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/tournaments",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "tournaments"]
+            }
+          }
+        },
+        {
+          "name": "Get Active Tournaments",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/tournaments/active",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "tournaments", "active"]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "Redeem Tokens",
+      "item": [
+        {
+          "name": "Create Redeem Token",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{token}}"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/redeem-tokens",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "redeem-tokens"]
+            },
+            "body": {
+              "mode": "raw",
+              "raw": "{\n    \"code\": \"SUMMER2024\",\n    \"discount_percentage\": 20,\n    \"valid_until\": \"2024-12-31T23:59:59Z\"\n}"
+            }
+          }
+        },
+        {
+          "name": "Get All Tokens",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/redeem-tokens",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "redeem-tokens"]
+            }
+          }
+        },
+        {
+          "name": "Get Active Tokens",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/redeem-tokens/active",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "redeem-tokens", "active"]
+            }
+          }
+        },
+        {
+          "name": "Get Token by Code",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "{{baseUrl}}/api/redeem-tokens/code/:code",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "redeem-tokens", "code", ":code"],
+              "variable": [
+                {
+                  "key": "code",
+                  "value": "SUMMER2024"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:3000"
+    },
+    {
+      "key": "token",
+      "value": "your_jwt_token_here"
+    }
+  ]
+} 
